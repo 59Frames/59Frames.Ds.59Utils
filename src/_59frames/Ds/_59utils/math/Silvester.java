@@ -1,4 +1,4 @@
-package _59frames.Ds._59utils;
+package _59frames.Ds._59utils.math;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

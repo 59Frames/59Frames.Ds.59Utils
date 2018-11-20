@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="59Frames.Ds.59Utils:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/59Frames_Ds_59Utils_jar</output-path>
+    <root id="archive" name="59Frames.Ds.59Utils.jar">
+      <element id="module-output" name="59Frames.Ds.59Utils" />
+    </root>
+  </artifact>
+</component>

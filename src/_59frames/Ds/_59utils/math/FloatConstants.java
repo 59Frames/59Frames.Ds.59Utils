@@ -1,4 +1,4 @@
-package _59frames.Ds._59utils;
+package _59frames.Ds._59utils.math;
 
 public final class FloatConstants {
     public static final float POSITIVE_INFINITY = (float)(1.0F / 0.0);

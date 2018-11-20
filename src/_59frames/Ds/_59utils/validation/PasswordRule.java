@@ -1,4 +1,4 @@
-package _59frames.Ds._59utils;
+package _59frames.Ds._59utils.validation;
 
 public enum PasswordRule {
     DIGITS("(?=.*[0-9])"),
