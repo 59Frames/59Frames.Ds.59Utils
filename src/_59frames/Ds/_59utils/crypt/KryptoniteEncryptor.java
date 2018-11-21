@@ -9,7 +9,7 @@ import java.security.PublicKey;
 import java.util.Base64;
 
 class KryptoniteEncryptor {
-    private Cipher cipher;
+    private final Cipher cipher;
 
     KryptoniteEncryptor(PublicKey key) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         this.cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
@@ -18,8 +18,8 @@ class KryptoniteEncryptor {
 
     String encrypt(String clear) {
         try {
-            byte[] encryptedbytes = cipher.doFinal(clear.getBytes(StandardCharsets.UTF_8));
-            return new String(Base64.getEncoder().encode(encryptedbytes));
+            byte[] encryptedBytes = cipher.doFinal(clear.getBytes(StandardCharsets.UTF_8));
+            return new String(Base64.getEncoder().encode(encryptedBytes));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

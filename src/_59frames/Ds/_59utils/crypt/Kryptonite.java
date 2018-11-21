@@ -1,25 +1,26 @@
 package _59frames.Ds._59utils.crypt;
 
+import javax.crypto.NoSuchPaddingException;
 import java.security.*;
 
 public class Kryptonite {
-    private KeyPairGenerator keyGen;
-    private KeyPair pair;
-    private PrivateKey privateKey;
-    private PublicKey publicKey;
-    private KryptoniteEncryptor encryptor;
-    private KryptoniteDecryptor decryptor;
+    private final PrivateKey privateKey;
+    private final PublicKey publicKey;
+    private final KryptoniteEncryptor encryptor;
+    private final KryptoniteDecryptor decryptor;
 
-    public Kryptonite() throws NoSuchAlgorithmException {
+    public Kryptonite() throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
         this(448);
     }
 
-    public Kryptonite(int keyLength) throws NoSuchAlgorithmException {
-        this.keyGen = KeyPairGenerator.getInstance("RSA");
-        this.keyGen.initialize(keyLength);
-        this.pair = this.keyGen.generateKeyPair();
+    public Kryptonite(int keyLength) throws NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException {
+        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+        keyGen.initialize(keyLength);
+        KeyPair pair = keyGen.generateKeyPair();
         this.privateKey = pair.getPrivate();
         this.publicKey = pair.getPublic();
+        this.encryptor = new KryptoniteEncryptor(publicKey);
+        this.decryptor = new KryptoniteDecryptor(privateKey);
     }
 
     public PrivateKey getPrivateKey() {
