@@ -1,4 +1,4 @@
-package _59frames.Ds._59utils;
+package _59frames.Ds._59utils.math;
 
 public final class DoubleConstants {
     public static final double POSITIVE_INFINITY = 1.0D / 0.0;
