@@ -1,13 +1,35 @@
-import _59frames.Ds._59utils.validation.PasswordStrength;
+import _59frames.Ds._59utils.crypt.Kryptonite;
 
-import static _59frames.Ds._59utils.validation.Validator.*;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 public class Main {
     public static void main(String[] args) {
-        String password = "Seife!1012";
-        String email = "info@danielseifert.ch";
+        try {
+            Kryptonite kryptonite = new Kryptonite();
 
-        System.out.println(isEmail(email));
-        System.out.println(isPassword(password, PasswordStrength.VERY_LOW));
+            String encrypted = kryptonite.encryptWithPublic("Daniel");
+
+            System.out.println(encrypted);
+
+            String decrypted = kryptonite.decryptWithPrivate(encrypted);
+
+            System.out.println(decrypted);
+
+            encrypted = kryptonite.encrypt("Daniel");
+
+            System.out.println(encrypted);
+
+            decrypted = kryptonite.decrypt(encrypted);
+
+            System.out.println(decrypted);
+
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | BadPaddingException | IllegalBlockSizeException | InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        }
     }
 }
