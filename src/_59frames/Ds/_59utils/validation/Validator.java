@@ -9,5 +9,28 @@ public final class Validator {
         return Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE).matcher(email).matches();
     }
 
+    public static boolean isPassword(String password) {
+        return isPassword(password, PasswordStrength.NORMAL);
+    }
+
+    public static boolean isPassword(String password, PasswordStrength strength) {
+        return matchesPasswordStrength(password, strength);
+    }
+
+    public static boolean matchesPasswordStrength(String password, PasswordStrength strength) {
+        return Pattern.compile(strength.REGEX, Pattern.CASE_INSENSITIVE).matcher(password).matches();
+    }
+
+    public static boolean isNumber(String number, NumberType numberType) {
+        return numberType.tryParse(number);
+    }
+
+    public static boolean isNumber(Object number, NumberType numberType) {
+        return isNumber(String.valueOf(number), numberType);
+    }
+
+    public static boolean isNumber(Object number) {
+        return isNumber(String.valueOf(number), NumberType.DOUBLE);
+    }
 
 }
