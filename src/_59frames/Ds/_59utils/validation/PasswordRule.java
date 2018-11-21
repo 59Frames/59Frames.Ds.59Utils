@@ -6,7 +6,9 @@ public enum PasswordRule {
     UPPERCASE("(?=.*[A-Z])"),
     SPECIAL_CHAR("(?=.*[@#$%^&+=!?.])"),
     NO_WHITESPACE("(?=\\S+$)"),
-    LENGTH(".{8,}");
+    LENGTH_8(".{8,}"),
+    LENGTH_12(".{8,}"),
+    LENGTH_16(".{16,}");
 
     public final String REGEX;
 
