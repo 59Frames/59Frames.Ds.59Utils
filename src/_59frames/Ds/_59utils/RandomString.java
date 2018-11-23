@@ -64,7 +64,7 @@ public final class RandomString {
         return new RandomString(length).nextString();
     }
 
-    public static String uid(int length) {
+    public static String uid() {
         return UUID.randomUUID().toString().replace("-", "");
     }
 }
