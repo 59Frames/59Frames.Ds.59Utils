@@ -4,6 +4,7 @@ import java.security.SecureRandom;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
+import java.util.UUID;
 
 public final class RandomString {
 
@@ -61,5 +62,9 @@ public final class RandomString {
 
     public static String random(int length) {
         return new RandomString(length).nextString();
+    }
+
+    public static String uid(int length) {
+        return UUID.randomUUID().toString().replace("-", "");
     }
 }
