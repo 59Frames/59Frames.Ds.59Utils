@@ -6,20 +6,19 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.UUID;
 
+/**
+ * @author Daniel Seifert
+ * @version 1.0
+ * @since 1.0
+ */
 public final class RandomString {
 
     private static final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
     private static final String LOWER = UPPER.toLowerCase(Locale.ROOT);
-
     private static final String DIGITS = "0123456789";
-
     private static final String ALPHA_NUM = UPPER + LOWER + DIGITS;
-
     private final Random RANDOM;
-
     private final char[] SYMBOLS;
-
     private final char[] BUFFER;
 
     public RandomString(int length, Random random, String symbols) {
@@ -41,7 +40,7 @@ public final class RandomString {
      * Create an alphanumeric strings from a secure generator.
      */
     public RandomString(int length) {
-        this(length, new SecureRandom());
+        this(length, Holder.random);
     }
 
     /**
@@ -60,11 +59,25 @@ public final class RandomString {
         return new String(BUFFER);
     }
 
+    /**
+     * @param length => String length
+     * @return random String
+     */
     public static String random(int length) {
         return new RandomString(length).nextString();
     }
 
+    /**
+     * Creates an unique UID based on the {@link UUID} class and removes every -
+     *
+     * @return String
+     * @see UUID
+     */
     public static String uid() {
         return UUID.randomUUID().toString().replace("-", "");
+    }
+
+    private static class Holder {
+        private static final SecureRandom random = new SecureRandom();
     }
 }
