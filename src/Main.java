@@ -19,11 +19,11 @@ public class Main {
 
             System.out.println(decrypted);
 
-            encrypted = kryptonite.encrypt("Daniel");
+            encrypted = kryptonite.encryptSymmetric("Daniel");
 
             System.out.println(encrypted);
 
-            decrypted = kryptonite.decrypt(encrypted);
+            decrypted = kryptonite.decryptSymmetric(encrypted);
 
             System.out.println(decrypted);
 

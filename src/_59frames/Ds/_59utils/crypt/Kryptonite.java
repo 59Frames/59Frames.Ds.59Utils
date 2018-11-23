@@ -33,14 +33,6 @@ public class Kryptonite {
         this.symmetricKeyCryptor = new SymmetricKeyCryptor(secretKey);
     }
 
-    public PrivateKey getPrivateKey() {
-        return this.privateKey;
-    }
-
-    public PublicKey getPublicKey() {
-        return this.publicKey;
-    }
-
     public String encryptWithPublic(String clear) throws InvalidKeyException {
         return kryptoniteCryptor.encrypt(clear, publicKey);
     }
@@ -49,11 +41,11 @@ public class Kryptonite {
         return kryptoniteCryptor.decrypt(encrypted, privateKey);
     }
 
-    public String encrypt(String clear) throws BadPaddingException, InvalidKeyException, IllegalBlockSizeException {
+    public String encryptSymmetric(String clear) throws BadPaddingException, InvalidKeyException, IllegalBlockSizeException {
         return symmetricKeyCryptor.encrypt(clear);
     }
 
-    public String decrypt(String encrypted) throws BadPaddingException, InvalidKeyException, IllegalBlockSizeException {
+    public String decryptSymmetric(String encrypted) throws BadPaddingException, InvalidKeyException, IllegalBlockSizeException {
         return symmetricKeyCryptor.decrypt(encrypted);
     }
 
