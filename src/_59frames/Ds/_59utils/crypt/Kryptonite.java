@@ -49,11 +49,11 @@ public class Kryptonite {
         return kryptoniteCryptor.decrypt(encrypted, privateKey);
     }
 
-    public String encrypt(String clear) throws BadPaddingException, InvalidKeyException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
+    public String encrypt(String clear) throws BadPaddingException, InvalidKeyException, IllegalBlockSizeException {
         return symmetricKeyCryptor.encrypt(clear);
     }
 
-    public String decrypt(String encrypted) throws BadPaddingException, InvalidKeyException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
+    public String decrypt(String encrypted) throws BadPaddingException, InvalidKeyException, IllegalBlockSizeException {
         return symmetricKeyCryptor.decrypt(encrypted);
     }
 
