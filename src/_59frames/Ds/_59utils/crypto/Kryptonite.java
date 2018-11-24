@@ -1,4 +1,4 @@
-package _59frames.Ds._59utils.crypt;
+package _59frames.Ds._59utils.crypto;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;

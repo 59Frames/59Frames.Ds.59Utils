@@ -1,4 +1,4 @@
-package _59frames.Ds._59utils.crypt;
+package _59frames.Ds._59utils.crypto;
 
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
