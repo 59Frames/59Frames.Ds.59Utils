@@ -33,6 +33,18 @@ public class Kryptonite {
         this.symmetricKeyCryptor = new SymmetricKeyCryptor(secretKey);
     }
 
+    public PrivateKey getPrivateKey() {
+        return privateKey;
+    }
+
+    public PublicKey getPublicKey() {
+        return publicKey;
+    }
+
+    public SecretKeySpec getSecretKey() {
+        return secretKey;
+    }
+
     public String encryptWithPublic(String clear) throws InvalidKeyException {
         return kryptoniteCryptor.encrypt(clear, publicKey);
     }

@@ -236,6 +236,14 @@ public final class Silvester {
         return round((float) random(a,b));
     }
 
+    public static int noiseInt(double prev) {
+        return randomInt(prev-3, prev+3);
+    }
+
+    public static double noise(double prev) {
+        return random(prev-3, prev+3);
+    }
+
     public static double exp(double d){
         return StrictMath.exp(d);
     }
