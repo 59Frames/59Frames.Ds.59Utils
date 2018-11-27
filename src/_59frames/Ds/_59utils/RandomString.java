@@ -1,5 +1,8 @@
 package _59frames.Ds._59utils;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import java.security.SecureRandom;
 import java.util.Locale;
 import java.util.Objects;
@@ -53,6 +56,8 @@ public final class RandomString {
     /**
      * Generate a random string.
      */
+    @NotNull
+    @Contract(" -> new")
     public String nextString() {
         for (int idx = 0; idx < BUFFER.length; ++idx)
             BUFFER[idx] = SYMBOLS[RANDOM.nextInt(SYMBOLS.length)];
@@ -63,6 +68,7 @@ public final class RandomString {
      * @param length => String length
      * @return random String
      */
+    @NotNull
     public static String random(int length) {
         return new RandomString(length).nextString();
     }
@@ -73,6 +79,7 @@ public final class RandomString {
      * @return String
      * @see UUID
      */
+    @NotNull
     public static String uid() {
         return UUID.randomUUID().toString().replace("-", "");
     }

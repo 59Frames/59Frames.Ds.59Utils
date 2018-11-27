@@ -1,5 +1,7 @@
 package _59frames.Ds._59utils.validation;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.regex.Pattern;
 
 public final class Validator {
@@ -17,11 +19,11 @@ public final class Validator {
         return matchesPasswordStrength(password, strength);
     }
 
-    public static boolean matchesPasswordStrength(String password, PasswordStrength strength) {
+    public static boolean matchesPasswordStrength(String password, @NotNull PasswordStrength strength) {
         return Pattern.compile(strength.REGEX, Pattern.CASE_INSENSITIVE).matcher(password).matches();
     }
 
-    public static boolean isNumber(String number, NumberType numberType) {
+    public static boolean isNumber(String number, @NotNull NumberType numberType) {
         return numberType.tryParse(number);
     }
 

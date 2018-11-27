@@ -1,9 +1,9 @@
 package _59frames.Ds._59utils.math;
 
 public final class FloatConstants {
-    public static final float POSITIVE_INFINITY = (float)(1.0F / 0.0);
-    public static final float NEGATIVE_INFINITY = (float)(-1.0F / 0.0);
-    public static final float NaN = (float)(0.0F / 0.0);
+    public static final float POSITIVE_INFINITY = (float) (1.0F / 0.0);
+    public static final float NEGATIVE_INFINITY = (float) (-1.0F / 0.0);
+    public static final float NaN = (float) (0.0F / 0.0);
     public static final float MAX_VALUE = 3.4028235E38F;
     public static final float MIN_VALUE = 1.4E-45F;
     public static final float MIN_NORMAL = 1.17549435E-38F;
