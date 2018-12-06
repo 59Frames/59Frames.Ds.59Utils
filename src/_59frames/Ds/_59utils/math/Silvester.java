@@ -7,14 +7,15 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public final class Silvester {
 
     private Silvester() {
     }
 
-    public static final double E = 2.7182818284590452354;
-    public static final double PI = 3.1415926535897932384626433832795028841971693993751058209749445923078164;
+    public static final double E = 2.7182818284590452354D;
+    public static final double PI = 3.1415926535897932384626433832795028841971693993751058209749445923078164D;
     public static final double TWO_PI = PI * 2;
 
     private static long negativeZeroFloatBits = Float.floatToRawIntBits(-0.0f);
@@ -228,17 +229,17 @@ public final class Silvester {
     }
 
     public static double random() {
-        return Math.random();
+        return Silvester.RandomNumberGeneratorHolder.randomNumberGenerator.nextDouble();
     }
 
     public static double random(double bound) {
-        return Math.random() * bound;
+        return random() * bound;
     }
 
     public static double random(double a, double b) {
         double max = max(a, b);
         double min = min(a, b);
-        return Math.random() * (max - min) + min;
+        return random() * (max - min) + min;
     }
 
     public static int randomInt() {
@@ -414,4 +415,10 @@ public final class Silvester {
         return celsius2fahrenheit(kelvin2celsius(kelvin));
     }
 
+    private static final class RandomNumberGeneratorHolder {
+        static final Random randomNumberGenerator = new Random();
+
+        private RandomNumberGeneratorHolder() {
+        }
+    }
 }
