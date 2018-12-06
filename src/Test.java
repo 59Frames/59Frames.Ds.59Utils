@@ -1,28 +1,20 @@
-import _59frames.Ds._59utils.math.PerlinNoise;
+import _59frames.Ds._59utils.validation.Validator;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import static _59frames.Ds._59utils.PromptHandler.print;
 
 public class Test {
-    private static final int WIDTH = 512;
-    private static final int HEIGHT = 512;
-    private static final double FEATURE_SIZE = 24;
+    public static void main(String[] args) {
+        String ipv4_false = "1.1.1";
+        String ipv4_true = "92.107.212.34";
 
-    public static void main(String[] args) throws IOException {
+        String ipv6_false = "2a02:1205:c6bd:4220:cc93:5e5a:2a87:f4fx";
+        String ipv6_true = "2a02:1205:c6bd:4220:cc93:5e5a:2a87:f4fe";
 
-        PerlinNoise noise = new PerlinNoise(10);
-        BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-        for (int y = 0; y < HEIGHT; y++)
-        {
-            for (int x = 0; x < WIDTH; x++)
-            {
-                double value = noise.eval(x / FEATURE_SIZE, y / FEATURE_SIZE, 0.0);
-                int rgb = 0x010101 * (int)((value + 1) * 127.5);
-                image.setRGB(x, y, rgb);
-            }
-        }
-        ImageIO.write(image, "png", new File("noise3.png"));
+        print(Validator.isIpv4(ipv4_false));
+        print(Validator.isIpv4(ipv4_true));
+
+        print(Validator.isIpv6(ipv6_false));
+        print(Validator.isIpv6(ipv6_true));
+
     }
 }
