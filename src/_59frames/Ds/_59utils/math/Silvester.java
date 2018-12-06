@@ -243,7 +243,7 @@ public final class Silvester {
     }
 
     public static int randomInt() {
-        return round((float) random());
+        return round((float) random(Integer.MIN_VALUE, Integer.MAX_VALUE));
     }
 
     public static int randomInt(int bound) {
