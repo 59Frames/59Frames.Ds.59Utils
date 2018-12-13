@@ -25,7 +25,7 @@ public class ArrayTools {
     }
 
     @NotNull
-    public static <T> T[] removeRedundancies(@NotNull T[] ts) {
+    public static <T> T[] removeRedundancies(@NotNull final T[] ts) {
         if (ts.length < 1)
             return ts;
 
@@ -33,5 +33,12 @@ public class ArrayTools {
         @SuppressWarnings("unchecked")
         final T[] a = (T[]) Array.newInstance(ts[0].getClass(), set.size());
         return set.toArray(a);
+    }
+
+    public static <T> void reverse(@NotNull T[] data) {
+        T[] clone = data.clone();
+        for ( int i = 0; i < clone.length; ++i ) {
+            data[i] = clone[clone.length-1-i];
+        }
     }
 }
