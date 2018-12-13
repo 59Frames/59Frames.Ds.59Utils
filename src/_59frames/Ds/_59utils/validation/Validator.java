@@ -14,14 +14,22 @@ public final class Validator {
         return EMAIL_PATTERN.matcher(email).matches();
     }
 
+    public static boolean isPassword(final String password, final int expectedLength, final PasswordRule... rules) {
+        Pattern pattern = PasswordRegexBuilder.buildRegex(expectedLength, rules);
+        return pattern.matcher(password).matches();
+    }
+
+    @Deprecated
     public static boolean isPassword(final String password) {
         return isPassword(password, PasswordStrength.NORMAL);
     }
 
+    @Deprecated
     public static boolean isPassword(final String password, final PasswordStrength strength) {
         return matchesPasswordStrength(password, strength);
     }
 
+    @Deprecated
     public static boolean matchesPasswordStrength(final String password, @NotNull final PasswordStrength strength) {
         return Pattern.compile(strength.REGEX, Pattern.CASE_INSENSITIVE).matcher(password).matches();
     }
