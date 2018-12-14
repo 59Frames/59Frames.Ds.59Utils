@@ -8,7 +8,7 @@ import static _59frames.Ds._59utils.tool.ArrayTools.removeRedundancies;
 
 class PasswordRegexBuilder {
     @NotNull
-    static Pattern buildRegex(int length, @NotNull PasswordRule... rules) {
+    static Pattern buildRegex(int length, @NotNull RegexRule... rules) {
 
         rules = removeRedundancies(rules);
 
@@ -16,8 +16,8 @@ class PasswordRegexBuilder {
         String len = ".{"+length+",}";
         stringBuilder.append("^");
 
-        for (PasswordRule definition : rules) {
-            stringBuilder.append(definition.REGEX);
+        for (RegexRule definition : rules) {
+            stringBuilder.append(definition.PATTERN.toString());
         }
 
         stringBuilder.append(len);

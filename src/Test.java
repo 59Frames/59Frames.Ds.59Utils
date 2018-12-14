@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import static _59frames.Ds._59utils.PromptHandler.print;
-import static _59frames.Ds._59utils.validation.PasswordRule.*;
 
 public class Test {
     public static void main(String[] args) {

@@ -20,7 +20,7 @@ public final class Validator {
         return EMAIL_PATTERN.matcher(email).matches();
     }
 
-    public static boolean isPassword(final String password, final int expectedLength, final PasswordRule... rules) {
+    public static boolean isPassword(final String password, final int expectedLength, final RegexRule... rules) {
         Pattern pattern = PasswordRegexBuilder.buildRegex(expectedLength, rules);
         return pattern.matcher(password).matches();
     }
