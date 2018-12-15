@@ -21,8 +21,13 @@ public final class Validator {
     }
 
     public static boolean isPassword(final String password, final int expectedLength, final RegexRule... rules) {
-        Pattern pattern = PasswordRegexBuilder.buildRegex(expectedLength, rules);
+        Pattern pattern = RegexBuilder.buildRegex(expectedLength, rules);
         return pattern.matcher(password).matches();
+    }
+
+    public static boolean matchesRegexRules(@NotNull final String str, final RegexRule... rules) {
+        Pattern pattern = RegexBuilder.buildRegex(rules);
+        return pattern.matcher(str).matches();
     }
 
     @Deprecated
