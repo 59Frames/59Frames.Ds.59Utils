@@ -27,8 +27,8 @@ public class ArrayTools {
     }
 
     @NotNull
-    public static <T> T[] removeRedundancies(@NotNull final T[] data) {
-        if (data.length < 1)
+    public static <T> T[] removeRedundanciesFrom(@NotNull final T[] data) {
+        if (data.length < 2)
             return data;
 
         HashSet<T> set = new HashSet<>(Arrays.asList(data));

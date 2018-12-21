@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>59Frames.ch</groupId>
+    <artifactId>59Frames.Ds.59Utils</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>59Utils</name>
+    <description>Things i find damn useful, which are not implemented by default in java.</description>
+    <url>https://github.com/59Frames/59Frames.Ds.59Utils</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://github.com/59Frames/59Frames.Ds.59Utils/blob/master/LICENSE</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Daniel Seifert</name>
+            <email>info@danielseifert.ch</email>
+            <organization>59Frames</organization>
+            <organizationUrl>59Frames.ch</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/59Frames/59Frames.Ds.59Utils.git</connection>
+        <developerConnection>scm:git:git://github.com/59Frames/59Frames.Ds.59Utils.git</developerConnection>
+        <url>https://github.com/59Frames/59Frames.Ds.59Utils</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+    </distributionManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <release>11</release>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.8</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>LATEST</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

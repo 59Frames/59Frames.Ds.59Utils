@@ -1,5 +1,7 @@
 package _59frames.Ds._59utils.validation;
 
+import org.jetbrains.annotations.Contract;
+
 import java.util.regex.Pattern;
 
 public enum RegexRule {
@@ -13,5 +15,10 @@ public enum RegexRule {
 
     RegexRule(Pattern pattern) {
         this.PATTERN = pattern;
+    }
+
+    @Contract(pure = true)
+    public final String getPureRegex() {
+        return PATTERN.toString();
     }
 }
