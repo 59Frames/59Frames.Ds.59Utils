@@ -24,33 +24,19 @@ public final class RandomString {
     private final char[] SYMBOLS;
     private final char[] BUFFER;
 
-    public RandomString(int length, Random random, String symbols) {
+    /**
+     * Constructs a new instance of type {@link RandomString}
+     *
+     * @param length    - the length of the desired string
+     * @param random    - the random to pick chars
+     * @param symbols   - the symbols to pick chars from
+     */
+    private RandomString(int length, Random random, String symbols) {
         if (length < 1) throw new IllegalArgumentException();
         if (symbols.length() < 2) throw new IllegalArgumentException();
         this.RANDOM = Objects.requireNonNull(random);
         this.SYMBOLS = symbols.toCharArray();
         this.BUFFER = new char[length];
-    }
-
-    /**
-     * Create an alphanumeric string generator.
-     */
-    public RandomString(int length, Random random) {
-        this(length, random, ALPHA_NUM);
-    }
-
-    /**
-     * Create an alphanumeric strings from a secure generator.
-     */
-    public RandomString(int length) {
-        this(length, Holder.random);
-    }
-
-    /**
-     * Create session identifiers.
-     */
-    public RandomString() {
-        this(21);
     }
 
     /**
@@ -69,8 +55,8 @@ public final class RandomString {
      * @return random String
      */
     @NotNull
-    public static String random(int length) {
-        return new RandomString(length).nextString();
+    public static String randomString(int length) {
+        return new RandomString.Builder().withLength(length).build().nextString();
     }
 
     /**
@@ -84,7 +70,48 @@ public final class RandomString {
         return UUID.randomUUID().toString().replace("-", "");
     }
 
+    /**
+     * A simple holder class to hold a secured
+     * static instance of random
+     */
     private static class Holder {
         private static final SecureRandom random = new SecureRandom();
+    }
+
+    /**
+     * Simple Builder class to construct random strings
+     */
+    public static class Builder {
+
+        private String symbols;
+        private Random random;
+        private int length;
+
+        public Builder() {
+            symbols = ALPHA_NUM;
+            random = Holder.random;
+            length = 21;
+        }
+
+        public Builder withSymbols(String symbols) {
+            if (symbols.length() < 2) throw new IllegalArgumentException();
+            this.symbols = symbols;
+            return this;
+        }
+
+        public Builder withLength(int length) {
+            if (length < 1) throw new IllegalArgumentException();
+            this.length = length;
+            return this;
+        }
+
+        public Builder withRandom(Random random) {
+            this.random = random;
+            return this;
+        }
+
+        public RandomString build() {
+            return new RandomString(length, random, symbols);
+        }
     }
 }

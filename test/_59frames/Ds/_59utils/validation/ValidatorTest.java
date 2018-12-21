@@ -1,15 +1,17 @@
 package _59frames.Ds._59utils.validation;
 
+import _59frames.Ds._59utils.RandomString;
+import _59frames.Ds._59utils.Stringlify;
+import _59frames.Ds._59utils.math.Silvester;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ValidatorTest {
-    private ArrayList<String> trueMails = new ArrayList<>();
-    private ArrayList<String> falseMails = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
@@ -29,6 +31,28 @@ class ValidatorTest {
         trueMails.add("email@example.name");
         trueMails.add("email@example.museum");
 
+        for (int i = 0; i < 100; i++) {
+            positiveNumbers.add(String.valueOf(Silvester.randomInt(1, 100)));
+        }
+
+        for (int i = 0; i < 100; i++) {
+            negativeNumbers.add(String.valueOf(Silvester.randomInt(-100, -1)));
+        }
+
+        for (int i = 0; i < 100; i++) {
+            trueNumbers.add(String.valueOf(Silvester.randomInt()));
+        }
+
+        trueDates.add("");
+
+        trueDomains.add("");
+
+        trueHex.add("");
+
+        trueIpv4.add("");
+
+        trueIpv6.add("");
+
         falseMails.add("#@%^%#$@#$@#.com");
         falseMails.add("@example.com");
         falseMails.add("Joe Smith <email@example.com>");
@@ -45,8 +69,14 @@ class ValidatorTest {
         falseMails.add("email@111.222.333.44444");
         falseMails.add("email@example..com");
         falseMails.add("Abc..123@example.com");
+
+        for (int i = 0; i < 100; i++) {
+            falseNumbers.add(new RandomString.Builder().withSymbols("ABCDEFGHIJKLMNOPQRSTUVWXYZ").build().nextString());
+        }
     }
 
+    private ArrayList<String> trueMails = new ArrayList<>();
+    private ArrayList<String> falseMails = new ArrayList<>();
     @Test
     void isEmail() {
         boolean isTrueMails = false;
@@ -84,18 +114,37 @@ class ValidatorTest {
     void matchesPasswordStrength() {
     }
 
+    private ArrayList<String> positiveNumbers = new ArrayList<>();
     @Test
     void isPositiveNumber() {
+        for (String s : positiveNumbers) {
+            assertTrue(Validator.isPositiveNumber(s));
+        }
     }
 
+    private ArrayList<String> negativeNumbers = new ArrayList<>();
     @Test
     void isNegativeNumber() {
+        for (String s : negativeNumbers) {
+            assertTrue(Validator.isNegativeNumber(s));
+        }
     }
 
+    private ArrayList<String> trueNumbers = new ArrayList<>();
+    private ArrayList<String> falseNumbers = new ArrayList<>();
     @Test
     void isNumber() {
+        for (String s : trueNumbers) {
+            assertTrue(Validator.isNumber(s));
+        }
+
+        for (String s : falseNumbers) {
+            assertFalse(Validator.isNumber(s));
+        }
     }
 
+    private ArrayList<String> trueIpv4 = new ArrayList<>();
+    private ArrayList<String> falseIpv4 = new ArrayList<>();
     @Test
     void isIpv4() {
     }
@@ -108,6 +157,8 @@ class ValidatorTest {
     void isIPv6HexCompressedAddress() {
     }
 
+    private ArrayList<String> trueIpv6 = new ArrayList<>();
+    private ArrayList<String> falseIpv6 = new ArrayList<>();
     @Test
     void isIpv6() {
     }
@@ -120,15 +171,22 @@ class ValidatorTest {
     void isDDMMYYYYDate() {
     }
 
+    private ArrayList<String> trueDates = new ArrayList<>();
+    private ArrayList<String> falseDates = new ArrayList<>();
     @Test
     void isDate() {
     }
 
+    private ArrayList<String> trueHex = new ArrayList<>();
+    private ArrayList<String> falseHex = new ArrayList<>();
     @Test
     void isHexColor() {
     }
 
+    private ArrayList<String> trueDomains = new ArrayList<>();
+    private ArrayList<String> falseDomains = new ArrayList<>();
     @Test
     void isDomain() {
+
     }
 }
