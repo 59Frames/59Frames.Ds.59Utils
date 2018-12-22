@@ -1,12 +1,11 @@
 package _59frames.Ds._59utils.validation;
 
 import _59frames.Ds._59utils.RandomString;
-import _59frames.Ds._59utils.Stringlify;
 import _59frames.Ds._59utils.math.Silvester;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.security.SecureRandom;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,15 +42,29 @@ class ValidatorTest {
             trueNumbers.add(String.valueOf(Silvester.randomInt()));
         }
 
-        trueDates.add("");
+        trueDates.add("2000.06.04");
+        trueDates.add("2000/06/04");
+        trueDates.add("2000-06-04");
 
-        trueDomains.add("");
+        trueDomains.add("daniel.seifert.ch");
+        trueDomains.add("danielseifert.ch");
+        trueDomains.add("google.com");
+        trueDomains.add("abc.xyz");
+        trueDomains.add("alphabet.xyz");
 
-        trueHex.add("");
+        trueHex.add("#000");
+        trueHex.add("#FFF");
+        trueHex.add("#F00");
+        trueHex.add("#FF00FF");
+        trueHex.add("#AABBCC");
+        trueHex.add("#AAB0B0");
+        trueHex.add("#F0F");
 
-        trueIpv4.add("");
+        trueIpv4.add("127.1.1.0");
+        trueIpv4.add("8.8.8.8");
+        trueIpv4.add("192.168.1.120");
 
-        trueIpv6.add("");
+        // trueIpv6.add("");
 
         falseMails.add("#@%^%#$@#$@#.com");
         falseMails.add("@example.com");
@@ -73,7 +86,45 @@ class ValidatorTest {
         for (int i = 0; i < 100; i++) {
             falseNumbers.add(new RandomString.Builder().withSymbols("ABCDEFGHIJKLMNOPQRSTUVWXYZ").build().nextString());
         }
+
+        falseDates.add("04:06:20");
+        falseDates.add("2000_06_04");
+        falseDates.add("2000-31-02");
+
+        falseDomains.add("google.c");
+        falseDomains.add("@domain.ch");
+        falseDomains.add("test domain.com");
+
+        falseHex.add("#0G0");
+
+        falseIpv4.add("1...");
+        falseIpv4.add("192.168.1.xxx");
+
+        //falseIpv6.add("");
     }
+
+    @AfterEach
+    void tearDown() {
+        trueDates.clear();
+        trueHex.clear();
+        trueIpv4.clear();
+        trueNumbers.clear();
+        trueIpv6.clear();
+        trueDomains.clear();
+        trueMails.clear();
+
+        positiveNumbers.clear();
+        negativeNumbers.clear();
+
+        falseDates.clear();
+        falseIpv6.clear();
+        falseHex.clear();
+        falseIpv4.clear();
+        falseDomains.clear();
+        falseNumbers.clear();
+        falseMails.clear();
+    }
+
 
     private ArrayList<String> trueMails = new ArrayList<>();
     private ArrayList<String> falseMails = new ArrayList<>();
@@ -147,6 +198,13 @@ class ValidatorTest {
     private ArrayList<String> falseIpv4 = new ArrayList<>();
     @Test
     void isIpv4() {
+        for (String s : trueIpv4) {
+            assertTrue(Validator.isIpv4(s));
+        }
+
+        for (String s : falseIpv4) {
+            assertFalse(Validator.isIpv4(s));
+        }
     }
 
     @Test
@@ -175,18 +233,38 @@ class ValidatorTest {
     private ArrayList<String> falseDates = new ArrayList<>();
     @Test
     void isDate() {
+        for (String s : trueDates) {
+            assertTrue(Validator.isDate(s));
+        }
+
+        for (String s : falseDates) {
+            assertFalse(Validator.isDate(s));
+        }
     }
 
     private ArrayList<String> trueHex = new ArrayList<>();
     private ArrayList<String> falseHex = new ArrayList<>();
     @Test
     void isHexColor() {
+        for (String s : trueHex) {
+            assertTrue(Validator.isHexColor(s));
+        }
+
+        for (String s : falseHex) {
+            assertFalse(Validator.isHexColor(s));
+        }
     }
 
     private ArrayList<String> trueDomains = new ArrayList<>();
     private ArrayList<String> falseDomains = new ArrayList<>();
     @Test
     void isDomain() {
+        for (String s : trueDomains) {
+            assertTrue(Validator.isDomain(s));
+        }
 
+        for (String s : falseDomains) {
+            assertFalse(Validator.isDomain(s));
+        }
     }
 }
