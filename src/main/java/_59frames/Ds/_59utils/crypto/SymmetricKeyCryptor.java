@@ -1,5 +1,8 @@
 package _59frames.Ds._59utils.crypto;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -13,7 +16,7 @@ public class SymmetricKeyCryptor {
     private final byte[] keyValue;
     private final Cipher cipher;
 
-    public SymmetricKeyCryptor(SecretKeySpec secretKey) throws NoSuchPaddingException, NoSuchAlgorithmException {
+    public SymmetricKeyCryptor(@NotNull SecretKeySpec secretKey) throws NoSuchPaddingException, NoSuchAlgorithmException {
         this.keyValue = secretKey.getEncoded();
         this.cipher = Cipher.getInstance(ALGORITHM);
     }
@@ -34,6 +37,8 @@ public class SymmetricKeyCryptor {
         return new String(decodedValue);
     }
 
+    @NotNull
+    @Contract(value = " -> new", pure = true)
     private Key generateKey() {
         return new SecretKeySpec(keyValue, ALGORITHM);
     }

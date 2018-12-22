@@ -13,11 +13,11 @@ class KryptoniteCryptor {
 
     private final Cipher cipher;
 
-    KryptoniteCryptor() throws NoSuchPaddingException, NoSuchAlgorithmException {
+    public KryptoniteCryptor() throws NoSuchPaddingException, NoSuchAlgorithmException {
         this.cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
     }
 
-    String encrypt(String clear, PublicKey key) throws InvalidKeyException {
+    public String encrypt(String clear, PublicKey key) throws InvalidKeyException {
         this.cipher.init(Cipher.ENCRYPT_MODE, key);
         try {
             byte[] encryptedBytes = cipher.doFinal(clear.getBytes(StandardCharsets.UTF_8));
@@ -27,7 +27,7 @@ class KryptoniteCryptor {
         }
     }
 
-    String decrypt(String encrypted, PrivateKey key) throws InvalidKeyException {
+    public String decrypt(String encrypted, PrivateKey key) throws InvalidKeyException {
         this.cipher.init(Cipher.DECRYPT_MODE, key);
         try {
             byte[] encryptedBytes = cipher.doFinal(Base64.getDecoder().decode(encrypted.getBytes()));
