@@ -42,8 +42,8 @@ public final class RandomString {
     /**
      * Generate a random string.
      */
-    @NotNull
     @Contract(" -> new")
+    @NotNull
     public String nextString() {
         for (int idx = 0; idx < BUFFER.length; ++idx)
             BUFFER[idx] = SYMBOLS[RANDOM.nextInt(SYMBOLS.length)];
@@ -51,7 +51,7 @@ public final class RandomString {
     }
 
     /**
-     * @param length => String length
+     * @param length - String length
      * @return random String
      */
     @NotNull
