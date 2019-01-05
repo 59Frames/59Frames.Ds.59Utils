@@ -19,7 +19,7 @@ public class OrCriterion<T> implements Criterion<T> {
     @NotNull
     @Override
     public Collection<T> meetCriteria(@NotNull Collection<T> list) {
-        HashSet<T> ppl = new HashSet<>();
+        ArrayList<T> ppl = new ArrayList<>();
 
         for (Criterion<T> c : criteria)
             ppl.addAll(c.meetCriteria(list));
