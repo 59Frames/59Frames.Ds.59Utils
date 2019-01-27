@@ -1,5 +1,6 @@
 package _59frames.Ds._59utils.validation;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.regex.Pattern;
@@ -46,6 +47,16 @@ public final class Validator {
     @Deprecated
     public static boolean matchesPasswordStrength(final String password, @NotNull final PasswordStrength strength) {
         return Pattern.compile(strength.REGEX, Pattern.CASE_INSENSITIVE).matcher(password).matches();
+    }
+
+    @Contract(pure = true)
+    public static boolean isEvenNumber(final double n) {
+        return (n % 2) == 0;
+    }
+
+    @Contract(pure = true)
+    public static boolean isOddNumber(final double n) {
+        return (n % 2) != 0;
     }
 
     public static boolean isPositiveNumber(final String number) {
